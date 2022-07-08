@@ -73,6 +73,7 @@ end_p = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'Arka.pn
 start = pygame.Rect(0, 0,1,1)
 arka = pygame.Rect(0,0,1,1)
 all_obj.append(arka)
+bg_img = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'game_bg (2).png')), (1240, 700))
 p_menu_bg = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'Menu_background.png')), (1240, 720))
 
 button = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'Button_menu.png')), (350, 110))
@@ -219,8 +220,8 @@ def teleport(coor, obj, objs):
             end.x -= var 
 
 def died():
-    global player, run, main_menu, objects, clock, all_obj
-    win.fill(color)
+    global player, run, main_menu, objects, clock, all_obj, bg_img
+    win.blit(bg_img, (0, 0))
     win.blit(pygame.transform.flip(end_p, True, False), (arka.x, 545))
     win.blit(ground_texture, ground)
     for i in objects:
@@ -979,7 +980,7 @@ while main_menu == True:
             if t.rect_ not in objects:
                 start.x = bar35.x + 350
                 chekpoint = 2
-        win.fill(color)
+        win.blit(bg_img, (0, 0))
         win.blit(ground_texture, (ground.x, 635))
         player.collide()
         bar9.move([480, 245, 140])
