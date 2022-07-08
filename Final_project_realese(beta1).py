@@ -1045,6 +1045,8 @@ while main_menu == True:
         clock.tick(FPS)
         t2 = time.time()
 
+a = False
+
 if end_open:
     a = True
 
