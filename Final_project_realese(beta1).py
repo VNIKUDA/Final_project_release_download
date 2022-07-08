@@ -1051,11 +1051,15 @@ if end_open:
     a = True
 
 q = 0
-while a == True and q < 5:
+while a == True and q < 300:
     t1 = time.time()
     win.blit(pygame.transform.scale(pygame.image.load(os.path.join("Assets", 'menu.png.png')), (1240, 720)), (0, 0))
-    win.blit(pygame.font.SysFont('Forte', 100).render('You get it!', True, 'white'), (200, 50))
-    win.blit(pygame.font.SysFont('Forte', 50).render('Created by Sasha Goncharuk', True, 'white'), (400, 200))
+    win.blit(pygame.font.SysFont('Forte', 100).render('You get it!', True, 'white'), (400, 50))
+    win.blit(pygame.font.SysFont('Forte', 70).render('Thank you for playing!', True, 'white'), (250, 200))
+    win.blit(pygame.font.SysFont('Forte', 60).render('Link to download pyton file: ', True, 'white'), (300, 300))
+    win.blit(pygame.font.SysFont('Forte', 50).render('https://vnikuda.github.io/', True, 'white'), (350, 400))
+    win.blit(pygame.font.SysFont('Forte', 50).render('Final_project_release_download/', True, 'white'), (350, 500))
+    win.blit(pygame.font.SysFont('Forte', 50).render('Created by Sasha Goncharuk', True, 'white'), (600, 600))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
