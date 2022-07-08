@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    font-size: 60px;
+    justify-content: center;
+    margin-top: 200px;
+    background-image: url('bg.png');
+    background-size: 50% 50%;
+    background-position: 300px 10px;
+    background-repeat: no-repeat;
+}
+
+div {
+    margin-top: 50px;
+    margin-right: 50px;
+    background-color: rgba(0, 0, 255, 0.606);
+    border-radius: 20px;
+    width: 500px;
+    height: 150px;
+    text-align: center;
+    padding-top: 75px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
