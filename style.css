@@ -1,6 +1,6 @@
 body {
     display: flex;
-    font-size: 60px;
+    font-size: 40px;
     justify-content: center;
     margin-top: 200px;
     background-image: url('bg.png');

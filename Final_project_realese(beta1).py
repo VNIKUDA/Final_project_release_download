@@ -91,7 +91,6 @@ menu_icon = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'Men
 t1 = time.time()
 ani = 0
 ani_time = 0
-kill = 0
 def animate(animation, times, coor):
     global ani, ani_time, t1
     if ani_time >= 0 and ani_time < times[ani]:
@@ -137,15 +136,6 @@ def sett_menu():
 
 def m_menu():
     global player, run, chekpoint, teleport, arka, all_obj
-    for i in range(4):
-        while arka.x != 0:
-            for i in all_obj:
-                i.x += 5
-            end.x += 5
-            start.x += 5
-            player.x = 10
-    player.x = 10
-    player.y = 560
     win.blit(pygame.transform.scale(pygame.image.load(os.path.join("Assets", 'menu.png.png')), (1240, 720)), (0, 0))
     animate([main_menu_text_w, main_menu_text_b], [0.2, 0.2], (420, 20))
     if chekpoint == 0:
@@ -169,7 +159,6 @@ def m_menu():
                         i.x += 5
                     end.x += 5
                     start.x += 5
-                    player.x = 10
                 player.x = 10
                 player.y = 560
                 player.m_down = True
@@ -237,16 +226,6 @@ def died():
     for i in objects:
             i.draw()
     win.blit(p_menu_bg, (0, 0))
-    for i in range(4):
-        while arka.x != 0:
-            for i in all_obj:
-                i.x += 5
-            end.x += 5
-            start.x += 5
-    player.x = 10
-    player.y = 560
-    player.m_down = True
-    player.m_up = False
 
     while player.alive != True:
         win.blit(button, (button_sett_rect))
@@ -554,13 +533,17 @@ class Sprite():
             win.blit(self.pict, (self.x+5, self.y+5))
 
         def collide(self):
-            global objects
+            global objects, mobs
 
             self.objs = []
 
             for object in objects:
                 if self.colliding.colliderect(object.rect):
                     self.objs.append(object)
+
+            for mob in mobs:
+                if self.colliding.colliderect(mob.rect):
+                    self.objs.append(mob)
 
         def move(self):
             global temp, temp2, temp3, animation, end, start, objects, all_obj, run, chekpoint, t1
@@ -995,6 +978,7 @@ while main_menu == True:
         if player.rect.colliderect(t.rect):
             if t.rect_ not in objects:
                 start.x = bar35.x + 350
+                chekpoint = 2
         win.fill(color)
         win.blit(ground_texture, (ground.x, 635))
         player.collide()
@@ -1060,20 +1044,15 @@ while main_menu == True:
         clock.tick(FPS)
         t2 = time.time()
 
-a = False
 if end_open:
     a = True
 
 q = 0
-while a == True and q < 300:
+while a == True and q < 5:
     t1 = time.time()
     win.blit(pygame.transform.scale(pygame.image.load(os.path.join("Assets", 'menu.png.png')), (1240, 720)), (0, 0))
-    win.blit(pygame.font.SysFont('Forte', 100).render('You get it!', True, 'white'), (400, 50))
-    win.blit(pygame.font.SysFont('Forte', 70).render('Thank you for playing!', True, 'white'), (250, 200))
-    win.blit(pygame.font.SysFont('Forte', 60).render('Link to download pyton file: ', True, 'white'), (300, 300))
-    win.blit(pygame.font.SysFont('Forte', 50).render('https://vnikuda.github.io/', True, 'white'), (350, 400))
-    win.blit(pygame.font.SysFont('Forte', 50).render('Final_project_release_download/', True, 'white'), (350, 500))
-    win.blit(pygame.font.SysFont('Forte', 50).render('Created by Sasha Goncharuk', True, 'white'), (600, 600))
+    win.blit(pygame.font.SysFont('Forte', 100).render('You get it!', True, 'white'), (200, 50))
+    win.blit(pygame.font.SysFont('Forte', 50).render('Created by Sasha Goncharuk', True, 'white'), (400, 200))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
